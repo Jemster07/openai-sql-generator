@@ -13,3 +13,15 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
 });
+
+app.post("/generate", async (req, res) => {
+    const { prompt } = req.query;
+    try {
+      const sqlQuery = await generate(prompt);
+      res.json({ sqlQuery });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  

@@ -1,10 +1,10 @@
 import styles from "./styles.module.css";
-import sqlServer from "../assets/sql-server.png";
+import sqlServer from "./assets/sql-server.png";
 import { useState } from "react";
 
 export default function App() {
 
-  const[userPrompt, setUserPrompt] = useState("");
+  const [userPrompt, setUserPrompt] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
