@@ -1,20 +1,21 @@
 import styles from "./styles.module.css";
-import sqlServer from "./assets/sql-server.png";
+import sqlServer from "../assets/sql-server.png";
+
 import { useState } from "react";
 
-export default function App() {
-
+function App() {
   const [userPrompt, setUserPrompt] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(userPrompt);
+    console.log("form submitted: ", userPrompt);
   };
 
   return (
     <main className={styles.main}>
       <img src={sqlServer} className={styles.icon} alt="SQL server" />
       <h3>Generate SQL</h3>
+      
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -28,3 +29,5 @@ export default function App() {
     </main>
   );
 }
+
+export default App
