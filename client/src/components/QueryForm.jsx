@@ -6,10 +6,25 @@ import { useState } from "react";
 function App() {
   const [userPrompt, setUserPrompt] = useState("");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("form submitted: ", userPrompt);
+
+    const sqlQuery = await generateQuery();
+    console.log("returned from server: ", sqlQuery);
   };
+
+  const generateQuery = async () => {
+    const response = await fetch("http://localhost:3002/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ userPrompt: userPrompt }),
+    });
+
+    const data = await response.json()
+    return data;
+  }
 
   return (
     <main className={styles.main}>
